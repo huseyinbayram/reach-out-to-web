@@ -5,7 +5,7 @@ import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 import axios from 'axios';
 
-axios.interceptors.request.use(
+var reqInterceptor = axios.interceptors.request.use(
   req => {
     console.log(req);
     // can edit request
@@ -16,6 +16,7 @@ axios.interceptors.request.use(
     return Promise.reject(err);
   }
 );
+axios.interceptors.request.eject(reqInterceptor);
 
 axios.interceptors.response.use(
   res => {
